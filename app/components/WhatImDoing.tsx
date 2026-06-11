@@ -58,7 +58,7 @@ export default function WhatImDoing() {
         <h2 style={{ margin: 0, fontSize: 20, color: "var(--text-primary)" }}>What I&apos;m Doing</h2>
         <div style={{ color: "var(--muted)", fontSize: 14, marginTop: 4 }}>Services &amp; expertise</div>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16 }}>
         {SERVICES.map((s) => (
           <div 
             key={s.title} 

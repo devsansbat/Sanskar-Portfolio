@@ -246,7 +246,7 @@ export default function Qualifications() {
       </div>
 
       {/* Grid Content */}
-      <div key={active} className="qual-content" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
+      <div key={active} className="qual-content" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16 }}>
         {DATA[active].map((item) => (
           <QualItem key={item.title} item={item} />
         ))}

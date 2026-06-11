@@ -16,7 +16,7 @@ export default function About() {
             <li>💼 Available for freelance &amp; full-time roles</li>
           </ul>
         </div>
-        <div style={{ width: 320 }}>
+        <div style={{ flex: "1 1 300px", maxWidth: "100%" }}>
           <div className="hero-card" style={{ padding: 12 }}>
             <div style={{ display: "flex", justifyContent: "space-between", gap: 12 }}>
               <div style={{ flex: 1 }}>

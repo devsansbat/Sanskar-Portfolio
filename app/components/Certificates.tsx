@@ -90,7 +90,7 @@ export default function Certificates() {
         <h2 style={{ margin: "0 0 16px 0", fontSize: "clamp(28px, 5vw, 40px)", fontWeight: 600, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>Certifications</h2>
         <div style={{ color: "var(--muted)", fontSize: 16, maxWidth: 500, margin: "0 auto", lineHeight: 1.6 }}>Official recognitions and completed coursework.</div>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 32 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 24 }}>
         {CERTS.map((c) => (
           <div 
             key={c.title} 
@@ -99,7 +99,7 @@ export default function Certificates() {
               background: "var(--glass)",
               border: "1px solid var(--border)",
               borderRadius: 24,
-              padding: 32,
+              padding: "clamp(20px, 6vw, 32px)",
               "--c-color": c.color
             } as React.CSSProperties}
           >
@@ -170,7 +170,7 @@ export default function Certificates() {
       {selectedPdf && (
         <div className="pdf-modal-overlay" onClick={() => setSelectedPdf(null)}>
           <div className="pdf-modal-content" onClick={(e) => e.stopPropagation()}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px 24px", borderBottom: "1px solid var(--border)", background: "rgba(255,255,255,0.02)" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 16px", borderBottom: "1px solid var(--border)", background: "rgba(255,255,255,0.02)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <i className="fa-solid fa-file-pdf" style={{ color: "var(--accent)", fontSize: 18 }} />
                 <span style={{ fontWeight: 600, color: "var(--text-primary)", fontSize: 16 }}>Certificate Viewer</span>
