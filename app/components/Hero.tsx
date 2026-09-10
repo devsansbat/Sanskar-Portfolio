@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 
 export default function Hero() {
   const typedRef = useRef<HTMLSpanElement>(null);
@@ -35,16 +36,27 @@ export default function Hero() {
   }, []);
 
   return (
-    <section
-      id="home"
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 380px",
-        gap: 28,
-        alignItems: "center",
-        padding: "48px 0",
-      }}
-    >
+    <section id="home" className="hero-section">
+      <style>{`
+        .hero-section {
+          display: grid;
+          grid-template-columns: 1fr 380px;
+          gap: 28px;
+          align-items: center;
+          padding: 48px 0;
+        }
+        @media (max-width: 900px) {
+          .hero-section {
+            grid-template-columns: 1fr;
+            padding: 24px 0;
+          }
+          .hero-image-aside {
+            order: -1;
+            max-width: 380px;
+            margin: 0 auto;
+          }
+        }
+      `}</style>
       {/* Left card */}
       <div className="hero-card">
         <div
@@ -93,12 +105,12 @@ export default function Hero() {
           </a>
         </div>
 
-        <div style={{ marginTop: 18, display: "flex", gap: 8 }}>
-          <a href="#" title="GitHub" className="social-link"><i className="fa-brands fa-github" /></a>
+        <div style={{ marginTop: 18, display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <a href="https://github.com/sanskarsri168" target="_blank" rel="noopener noreferrer" title="GitHub" className="social-link"><i className="fa-brands fa-github" /></a>
           <a href="https://www.linkedin.com/in/sanskarksrivastav/" target="_blank" rel="noopener noreferrer" title="LinkedIn" className="social-link">
             <i className="fa-brands fa-linkedin" />
           </a>
-          <a href="https://t.me/mr_sanskar_168" title="Telegram" className="social-link"><i className="fa-brands fa-telegram" /></a>
+          <a href="https://t.me/mr_sanskar_168" target="_blank" rel="noopener noreferrer" title="Telegram" className="social-link"><i className="fa-brands fa-telegram" /></a>
           <a href="https://www.instagram.com/mr_sanskar_168/" target="_blank" rel="noopener noreferrer" title="Instagram" className="social-link">
             <i className="fa-brands fa-instagram" />
           </a>
@@ -110,13 +122,15 @@ export default function Hero() {
       </div>
 
       {/* Right profile card */}
-      <aside>
+      <aside className="hero-image-aside">
         <div className="hero-card">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/photo_6264672623056850347_y.jpg"
             alt="Sanskar Srivastava"
-            style={{ width: "100%", borderRadius: 12, display: "block", marginBottom: 12 }}
+            width={380}
+            height={380}
+            style={{ width: "100%", height: "auto", borderRadius: 12, display: "block", marginBottom: 12, objectFit: "cover" }}
+            priority
           />
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <div>

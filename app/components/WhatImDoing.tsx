@@ -54,51 +54,44 @@ const SERVICES = [
 export default function WhatImDoing() {
   return (
     <section id="doing" className="section-divider">
+      <style>{`
+        .service-card {
+          transition: all 0.3s ease;
+        }
+        .service-card:hover {
+          transform: translateY(-6px);
+          border-color: var(--accent);
+          box-shadow: 0 12px 30px rgba(124,58,237,0.15);
+        }
+        .service-card .icon-box {
+          transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .service-card:hover .icon-box {
+          background: linear-gradient(135deg, rgba(124,58,237,1) 0%, rgba(124,58,237,0.8) 100%);
+          color: #fff;
+          transform: scale(1.08) translateY(-2px);
+          box-shadow: 0 10px 20px rgba(124,58,237,0.4), inset 0 2px 4px rgba(255,255,255,0.3);
+        }
+      `}</style>
       <div style={{ marginBottom: 28 }}>
         <h2 style={{ margin: 0, fontSize: 20, color: "var(--text-primary)" }}>What I&apos;m Doing</h2>
         <div style={{ color: "var(--muted)", fontSize: 14, marginTop: 4 }}>Services &amp; expertise</div>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: 16 }}>
         {SERVICES.map((s) => (
           <div 
             key={s.title} 
+            className="service-card"
             style={{ 
               background: "var(--glass)", 
               border: "1px solid var(--border)", 
               borderRadius: 16, 
               padding: 24, 
-              transition: "all 0.3s ease",
               display: "flex",
               flexDirection: "column",
               gap: 18,
               position: "relative",
               overflow: "hidden"
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.transform = "translateY(-6px)";
-              (e.currentTarget as HTMLElement).style.borderColor = "var(--accent)";
-              (e.currentTarget as HTMLElement).style.boxShadow = "0 12px 30px rgba(124,58,237,0.15)";
-              
-              const iconBox = e.currentTarget.querySelector('.icon-box') as HTMLElement;
-              if (iconBox) {
-                iconBox.style.background = "linear-gradient(135deg, rgba(124,58,237,1) 0%, rgba(124,58,237,0.8) 100%)";
-                iconBox.style.color = "#fff";
-                iconBox.style.transform = "scale(1.08) translateY(-2px)";
-                iconBox.style.boxShadow = "0 10px 20px rgba(124,58,237,0.4), inset 0 2px 4px rgba(255,255,255,0.3)";
-              }
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-              (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
-              (e.currentTarget as HTMLElement).style.boxShadow = "none";
-              
-              const iconBox = e.currentTarget.querySelector('.icon-box') as HTMLElement;
-              if (iconBox) {
-                iconBox.style.background = "linear-gradient(135deg, rgba(124,58,237,0.15) 0%, rgba(124,58,237,0.02) 100%)";
-                iconBox.style.color = "var(--accent)";
-                iconBox.style.transform = "scale(1) translateY(0)";
-                iconBox.style.boxShadow = "inset 0 1px 2px rgba(255,255,255,0.1), 0 8px 16px rgba(0,0,0,0.1)";
-              }
             }}
           >
             {/* Realistic 3D Icon Box */}
@@ -115,7 +108,6 @@ export default function WhatImDoing() {
                 display: "flex", 
                 alignItems: "center", 
                 justifyContent: "center", 
-                transition: "all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)"
               }}
             >
               {s.icon}

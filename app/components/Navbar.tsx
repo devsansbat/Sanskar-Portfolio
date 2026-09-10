@@ -20,33 +20,10 @@ export default function Navbar() {
   ];
 
   return (
-    <header
-      style={{
-        position: "sticky",
-        top: 8,
-        zIndex: 50,
-        backdropFilter: "blur(3px)",
-        padding: "0 28px",
-        marginBottom: 20,
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 10,
-          padding: "6px 10px",
-          borderRadius: 10,
-          background: "rgba(255,255,255,0.02)",
-          border: "1px solid var(--border)",
-          boxShadow: "0 4px 12px rgba(2,6,23,0.4)",
-          maxWidth: 1100,
-          margin: "0 auto",
-        }}
-      >
+    <header className="header-nav">
+      <div className="nav-container">
         {/* Brand */}
-        <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+        <div className="nav-brand" style={{ display: "flex", gap: 10, alignItems: "center" }}>
           <div
             style={{
               width: 40,
@@ -63,14 +40,14 @@ export default function Navbar() {
           >
             SS
           </div>
-          <div>
+          <div className="nav-brand-details">
             <div style={{ fontWeight: 800, fontSize: 16 }}>Sanskar Srivastava</div>
             <div style={{ fontSize: 11, color: "var(--muted)" }}>Developer • Programmer</div>
           </div>
         </div>
 
         {/* Nav links */}
-        <nav style={{ display: "flex", gap: 6 }}>
+        <nav className="nav-links">
           {navLinks.map((link) => (
             <a key={link.href} href={link.href}>
               {link.label}
@@ -79,7 +56,7 @@ export default function Navbar() {
         </nav>
 
         {/* Buttons */}
-        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+        <div className="nav-actions" style={{ display: "flex", gap: 8, alignItems: "center" }}>
           <button
             onClick={toggleTheme}
             className="btn"

@@ -39,6 +39,25 @@ export default function Skills() {
         .skill-item {
           padding: 12px;
           cursor: default;
+          position: relative; /* Tooltip positioning ke liye zaroori */
+        }
+        .skill-name {
+          position: absolute;
+          bottom: -18px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: var(--card);
+          color: var(--text-primary);
+          padding: 3px 8px;
+          border-radius: 6px;
+          font-size: 12px;
+          font-weight: 500;
+          white-space: nowrap;
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s ease;
+          border: 1px solid var(--border);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         .skill-item i {
           transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -46,6 +65,12 @@ export default function Skills() {
         .skill-item:hover i {
           transform: scale(1.25) translateY(-4px);
           filter: drop-shadow(0 8px 16px var(--brand-color));
+          animation-play-state: paused; /* Floating animation ko hover par rokne ke liye */
+        }
+        .skill-item:hover .skill-name {
+          opacity: 1;
+          visibility: visible;
+          transform: translateX(-50%) translateY(8px);
         }
       `}</style>
 
@@ -86,10 +111,11 @@ export default function Skills() {
         }}
       >
         {filteredSkills.map((s) => (
-          <div key={s.name} title={s.name} className="skill-item" style={{ "--brand-color": s.color } as React.CSSProperties}>
-            <div className="anim-wrapper">
+          <div key={s.name} className="skill-item" style={{ "--brand-color": s.color } as React.CSSProperties}>
+            <div className="anim-wrapper" style={{ animationPlayState: 'running' }}>
               <i className={s.icon} style={{ fontSize: 36, color: s.color }} />
             </div>
+            <span className="skill-name">{s.name}</span>
           </div>
         ))}
       </div>

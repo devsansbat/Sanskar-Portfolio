@@ -23,7 +23,7 @@ const EDUCATION = [
     subtitle: "Science Stream (PCM)",
     desc: "Completed 12th grade with focus on Physics, Chemistry, and Mathematics along with Computer Science.",
     meta: [
-      { icon: "fa-graduation-cap", text: "UP Board" },
+      { icon: "fa-graduation-cap", text: "CBSE Board" },
       { icon: "fa-map-marker-alt", text: "Ballia , UttarPradesh, India" },
       { icon: "fa-calendar", text: "2020 - 2022" },
     ],
@@ -33,7 +33,7 @@ const EDUCATION = [
     subtitle: "General Education",
     desc: "Completed 10th grade with excellent academic record and early interest in computer science.",
     meta: [
-      { icon: "fa-graduation-cap", text: "UP Board" },
+      { icon: "fa-graduation-cap", text: "CBSE Board" },
       { icon: "fa-map-marker-alt", text: "Ballia , UttarPradesh, India" },
       { icon: "fa-calendar", text: "2019 - 2020" },
     ],
@@ -100,38 +100,32 @@ const TRAINING = [
   },
 ];
 
-const DATA: Record<string, typeof EDUCATION> = {
+type QualificationData = typeof EDUCATION | typeof ACHIEVEMENTS | typeof TRAINING;
+
+const DATA: Record<string, QualificationData> = {
   education: EDUCATION,
   achievements: ACHIEVEMENTS,
   training: TRAINING,
 };
 
-function QualItem({ item }: { item: (typeof EDUCATION)[0] }) {
+type QualItemType = (typeof EDUCATION)[0] | (typeof ACHIEVEMENTS)[0] | (typeof TRAINING)[0];
+
+function QualItem({ item }: { item: QualItemType }) {
   // Date ko top-right badge mein dikhane ke liye extract kar rahe hain
   const dateMeta = item.meta.find(m => m.icon.includes('calendar'));
   const otherMeta = item.meta.filter(m => !m.icon.includes('calendar'));
 
   return (
-    <div 
+    <div
+      className="qual-item-card"
       style={{ 
         background: "var(--glass)", 
         border: "1px solid var(--border)", 
         borderRadius: 16, 
         padding: 20, 
-        transition: "all 0.3s ease",
         display: "flex",
         flexDirection: "column",
         gap: 12
-      }}
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
-        (e.currentTarget as HTMLElement).style.borderColor = "var(--accent)";
-        (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 24px rgba(124,58,237,0.1)";
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-        (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
-        (e.currentTarget as HTMLElement).style.boxShadow = "none";
       }}
     >
       {/* Top Row: Subtitle & Date Badge */}
@@ -186,6 +180,14 @@ export default function Qualifications() {
         }
         .qual-content {
           animation: fadeInScale 0.3s ease-out forwards;
+        }
+        .qual-item-card {
+          transition: all 0.3s ease;
+        }
+        .qual-item-card:hover {
+          transform: translateY(-4px);
+          border-color: var(--accent);
+          box-shadow: 0 8px 24px rgba(124,58,237,0.1);
         }
       `}</style>
       
@@ -246,7 +248,7 @@ export default function Qualifications() {
       </div>
 
       {/* Grid Content */}
-      <div key={active} className="qual-content" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16 }}>
+      <div key={active} className="qual-content" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: 16 }}>
         {DATA[active].map((item) => (
           <QualItem key={item.title} item={item} />
         ))}

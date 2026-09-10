@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 const BmcIcon = () => {
   // eslint-disable-next-line @next/next/no-img-element
@@ -14,7 +15,7 @@ const BmcIcon = () => {
 
 const PROJECTS = [
   {
-    image: "/photo_6264672623056850347_y (1).jpg",
+    image: "/project-learna-academy.jpg",
     title: "Learna Academy",
     tech: "React • Tailwind",
     desc: "An online learning platform UI with a clean and modern design, focusing on user experience and accessibility.",
@@ -48,46 +49,49 @@ export default function Projects() {
         .bmc-btn:hover .bmc-icon {
           animation: bmcWiggle 0.6s ease-in-out infinite;
         }
+        .project-card {
+          transition: all 0.3s ease;
+        }
+        .project-card:hover {
+          transform: translateY(-6px);
+          border-color: var(--accent);
+          box-shadow: 0 12px 24px rgba(0,0,0,0.15), 0 0 16px rgba(124,58,237,0.1);
+        }
+        .project-card:hover .project-image {
+          transform: scale(1.05);
+        }
+        .project-image {
+          transition: transform 0.4s ease;
+        }
       `}</style>
       <div style={{ marginBottom: 48, textAlign: "center" }}>
         <div style={{ color: "var(--accent)", fontSize: 13, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 12 }}>Portfolio</div>
         <h2 style={{ margin: "0 0 16px 0", fontSize: "clamp(28px, 5vw, 40px)", fontWeight: 600, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>Recent Projects</h2>
         <div style={{ color: "var(--muted)", fontSize: 16, maxWidth: 500, margin: "0 auto", lineHeight: 1.6 }}>A selection of projects that I'm proud of.</div>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 20 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", gap: 20 }}>
         {PROJECTS.map((p) => (
           <div 
-            key={p.title} 
+            key={p.title}
+            className="project-card"
             style={{ 
               background: "var(--glass)", 
               border: "1px solid var(--border)", 
               borderRadius: 16, 
               overflow: "hidden",
-              transition: "all 0.3s ease",
               display: "flex",
               flexDirection: "column"
             }}
-            onMouseEnter={(e) => {
-              const target = e.currentTarget as HTMLElement;
-              target.style.transform = "translateY(-6px)";
-              target.style.borderColor = "var(--accent)";
-              target.style.boxShadow = "0 12px 24px rgba(0,0,0,0.15), 0 0 16px rgba(124,58,237,0.1)";
-              (target.querySelector("img") as HTMLElement).style.transform = "scale(1.05)";
-            }}
-            onMouseLeave={(e) => {
-              const target = e.currentTarget as HTMLElement;
-              target.style.transform = "translateY(0)";
-              target.style.borderColor = "var(--border)";
-              target.style.boxShadow = "none";
-              (target.querySelector("img") as HTMLElement).style.transform = "scale(1)";
-            }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <div style={{ width: "100%", height: 160, overflow: "hidden", borderBottom: "1px solid var(--border)" }}>
-              <img
+            <div style={{ position: "relative", width: "100%", height: 160, overflow: "hidden", borderBottom: "1px solid var(--border)" }}>
+              <Image
                 src={p.image}
                 alt={p.title}
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform 0.4s ease" }}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="project-image"
+                style={{ objectFit: "cover" }}
+                unoptimized={p.image.startsWith('http')}
               />
             </div>
             <div style={{ padding: 20, display: "flex", flexDirection: "column", flexGrow: 1 }}>
@@ -98,11 +102,20 @@ export default function Projects() {
               </p>
               
               {/* Actions */}
-              <div style={{ display: "flex", gap: 10, marginTop: "auto" }}>
-                <a className="btn" href={p.link} target="_blank" rel="noopener noreferrer" style={{ flex: 1, justifyContent: "center", fontSize: 13, padding: "8px 12px" }}>
+              <div style={{ display: "flex", gap: 10, marginTop: "auto", flexWrap: "wrap" }}>
+                <a 
+                  className="btn" 
+                  href={p.link === "#" ? undefined : p.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  style={{ 
+                    flex: 1, justifyContent: "center", fontSize: 13, padding: "8px 12px",
+                    pointerEvents: p.link === "#" ? "none" : "auto",
+                    opacity: p.link === "#" ? 0.5 : 1
+                  }}>
                   Live Demo <i className="fa-solid fa-arrow-up-right-from-square" style={{ marginLeft: 6, fontSize: 11 }} />
                 </a>
-                <a className="btn bmc-btn" href="#" target="_blank" rel="noopener noreferrer" style={{ flex: 1, justifyContent: "center", fontSize: 13, padding: "8px 12px", background: "rgba(255,255,255,0.03)" }}>
+                <a className="btn bmc-btn" href="https://www.buymeacoffee.com/sanskarsri" target="_blank" rel="noopener noreferrer" style={{ flex: 1, justifyContent: "center", fontSize: 13, padding: "8px 12px", background: "rgba(255,255,255,0.03)" }}>
                   Buy a Coffee <BmcIcon />
                 </a>
               </div>
