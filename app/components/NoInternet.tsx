@@ -2,12 +2,21 @@
 import { useEffect, useState } from "react";
 
 export default function NoInternet() {
-  const [offline, setOffline] = useState(false);
+  const [offline, setOffline] = useState(() => (
+    typeof navigator !== "undefined" ? !navigator.onLine : false
+  ));
 
   useEffect(() => {
-    if (!navigator.onLine) setOffline(true);
-    window.addEventListener("offline", () => setOffline(true));
-    window.addEventListener("online", () => setOffline(false));
+    const handleOffline = () => setOffline(true);
+    const handleOnline = () => setOffline(false);
+
+    window.addEventListener("offline", handleOffline);
+    window.addEventListener("online", handleOnline);
+
+    return () => {
+      window.removeEventListener("offline", handleOffline);
+      window.removeEventListener("online", handleOnline);
+    };
   }, []);
 
   if (!offline) return null;

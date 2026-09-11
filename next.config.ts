@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   images: {
     unoptimized: true,
+    remotePatterns: [
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "i.pravatar.cc" },
+      { protocol: "https", hostname: "cdn.buymeacoffee.com" },
+    ],
   },
   turbopack: {
     root: process.cwd(),

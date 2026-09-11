@@ -60,7 +60,7 @@ export default function Contact() {
       `}</style>
       <div style={{ marginBottom: 48, textAlign: "center" }}>
         <div style={{ color: "var(--accent)", fontSize: 13, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 12 }}>Get in Touch</div>
-        <h2 style={{ margin: "0 0 16px 0", fontSize: "clamp(28px, 5vw, 40px)", fontWeight: 600, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>Let's Connect</h2>
+        <h2 style={{ margin: "0 0 16px 0", fontSize: "clamp(28px, 5vw, 40px)", fontWeight: 600, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>Let&apos;s Connect</h2>
         <div style={{ color: "var(--muted)", fontSize: 16, maxWidth: 500, margin: "0 auto", lineHeight: 1.6 }}>Have a project in mind or just want to say hi? Feel free to reach out.</div>
       </div>
 

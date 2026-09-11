@@ -93,7 +93,7 @@ function TestimonialCard({ item }: { item: (typeof TESTIMONIALS)[0] }) {
       </div>
       <div>
         <p style={{ margin: 0, color: "var(--text-primary)", fontSize: 14, lineHeight: 1.6, fontStyle: "italic" }}>
-          "{item.testimonial}"
+          “{item.testimonial}”
         </p>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", paddingTop: 8 }}>
@@ -190,10 +190,12 @@ export default function Testimonials() {
     lastMoveTime.current = currentTime;
   }, [isDragging, didDrag]);
 
+  const handleMouseMove = useCallback((e: MouseEvent) => handleDragMove(e.pageX), [handleDragMove]);
   const handleMouseDown = (e: ReactMouseEvent<HTMLDivElement>) => handleDragStart(e.pageX);
-  const handleMouseMove = (e: MouseEvent) => handleDragMove(e.pageX);
   const handleTouchStart = (e: ReactTouchEvent<HTMLDivElement>) => handleDragStart(e.touches[0].pageX);
-  const handleTouchMove = (e: TouchEvent) => { if (isDragging) handleDragMove(e.touches[0].pageX); };
+  const handleTouchMove = useCallback((e: TouchEvent) => {
+    if (isDragging) handleDragMove(e.touches[0].pageX);
+  }, [handleDragMove, isDragging]);
 
   // Prevent link clicks on drag
   const handleClickCapture = useCallback((e: ReactMouseEvent<HTMLDivElement>) => {
@@ -222,7 +224,7 @@ export default function Testimonials() {
       document.removeEventListener('touchend', handleDragEnd);
       stopMomentumScroll();
     };
-  }, [isDragging, handleDragMove, handleDragEnd, stopMomentumScroll]);
+  }, [isDragging, handleDragMove, handleDragEnd, handleMouseMove, handleTouchMove, stopMomentumScroll]);
 
   return (
     <section id="testimonials" className="section-divider">

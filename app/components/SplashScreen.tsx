@@ -2,23 +2,19 @@
 import { useState, useEffect } from "react";
 
 export default function SplashScreen() {
-  const [isMounted, setIsMounted] = useState(false);
   const [isFinishing, setIsFinishing] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
-    // Component mount hone ke turant baad animation shuru karein
-    setIsMounted(true);
-
     // Fade-out animation shuru karne ka timer
     const fadeOutTimer = setTimeout(() => {
       setIsFinishing(true);
-    }, 1800); // Aap is time ko badal sakte hain
+    }, 1800);
 
     // Component ko DOM se hatane ka timer
     const finishTimer = setTimeout(() => {
       setIsFinished(true);
-    }, 2300); // Yeh fadeOutTimer + animation ki avadhi (0.5s) hai
+    }, 2300);
 
     return () => {
       clearTimeout(fadeOutTimer);
@@ -64,7 +60,7 @@ export default function SplashScreen() {
         }}
       >
         <div
-          className={isMounted ? "splash-logo" : ""}
+        className="splash-logo"
           style={{
             width: 60,
             height: 60,

@@ -57,7 +57,7 @@ export default function Clients() {
       `}</style>
       <div style={{ marginBottom: 24, textAlign: "center" }}>
         <h2 style={{ margin: 0, fontSize: 20, color: "var(--text-primary)" }}>Trusted By</h2>
-        <div style={{ color: "var(--muted)", fontSize: 14, marginTop: 4 }}>A few of the clients and companies I've worked with.</div>
+        <div style={{ color: "var(--muted)", fontSize: 14, marginTop: 4 }}>A few of the clients and companies I&apos;ve worked with.</div>
       </div>
       <div className="marquee-container">
         <div className="marquee-content">

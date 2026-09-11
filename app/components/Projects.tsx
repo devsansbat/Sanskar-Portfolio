@@ -2,13 +2,15 @@
 import Image from "next/image";
 
 const BmcIcon = () => {
-  // eslint-disable-next-line @next/next/no-img-element
   return (
-    <img 
-      src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" 
-      alt="Buy Me A Coffee" 
+    <Image
+      src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg"
+      alt="Buy Me A Coffee"
       className="bmc-icon"
-      style={{ marginLeft: 6, width: 18, height: 18, transition: "transform 0.3s ease" }} 
+      width={18}
+      height={18}
+      unoptimized
+      style={{ marginLeft: 6, width: 18, height: 18, transition: "transform 0.3s ease" }}
     />
   );
 };
@@ -67,7 +69,7 @@ export default function Projects() {
       <div style={{ marginBottom: 48, textAlign: "center" }}>
         <div style={{ color: "var(--accent)", fontSize: 13, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 12 }}>Portfolio</div>
         <h2 style={{ margin: "0 0 16px 0", fontSize: "clamp(28px, 5vw, 40px)", fontWeight: 600, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>Recent Projects</h2>
-        <div style={{ color: "var(--muted)", fontSize: 16, maxWidth: 500, margin: "0 auto", lineHeight: 1.6 }}>A selection of projects that I'm proud of.</div>
+        <div style={{ color: "var(--muted)", fontSize: 16, maxWidth: 500, margin: "0 auto", lineHeight: 1.6 }}>A selection of projects that I&apos;m proud of.</div>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", gap: 20 }}>
         {PROJECTS.map((p) => (
